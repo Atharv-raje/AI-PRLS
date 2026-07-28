@@ -1,0 +1,5 @@
+__pycache__/
+data/aiprls.sqlite3
+data/companion_index.npz
+*.pyc
+.DS_Store

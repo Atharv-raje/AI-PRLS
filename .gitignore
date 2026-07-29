@@ -1,4 +1,5 @@
 __pycache__/
+.venv/
 data/aiprls.sqlite3
 data/companion_index.npz
 *.pyc

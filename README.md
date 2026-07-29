@@ -49,13 +49,24 @@ Embeddings (bge-small, ~130MB) run fine on CPU if you'd rather keep GPU 2 free.
 
 ### 1. Environment
 
+**GPU server (conda, preferred):**
+
 ```bash
 conda env create -f environment.yml
 conda activate aiprls
 ```
 
-(On a non-GPU machine, delete the `vllm` line from `environment.yml` first and
-use mock mode — see below.)
+**Laptop / no GPUs (venv, skip vLLM):**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install "fastapi>=0.111" "uvicorn[standard]>=0.30" "httpx>=0.27" \
+  "pydantic>=2.7" "numpy>=1.26" "sentence-transformers>=3.0"
+```
+
+(On a non-GPU machine with conda, delete the `vllm` line from `environment.yml`
+first and use mock mode — see below.)
 
 ### 2. Build the retrieval index
 
@@ -98,6 +109,8 @@ AIPRLS_MOCK_LLM=1 python app.py
 
 The full interface, database, and question flow work with canned model
 responses — useful for frontend work and IRB demos on a laptop.
+
+Quick check: `bash scripts/smoke_test.sh` (expects mock mode; all tests should PASS).
 
 ## Configuration
 

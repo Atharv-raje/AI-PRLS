@@ -15,6 +15,7 @@ reproducing it.
   rating is logged to SQLite under anonymous study IDs.
 
 ## How it works
+
 ```
 Student ──► Chat UI ──► FastAPI ──► Router agent ─┬─► Question Maker ──► question card
  (browser)  (plain      (app.py)   (intent +      ├─► Reasoning Coach ─► feedback on the WHY

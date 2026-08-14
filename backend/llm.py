@@ -43,6 +43,7 @@ _MOCK_RESPONSES = {
             "domain": 3,
             "chapter": 1,
             "topic": "exam pacing",
+            "bloom_level": "application",
             "stem": "MOCK MODE — the LLM server is not connected. This is a placeholder "
             "question. An OT student has 90 items left and 60 minutes remaining on a "
             "computer-based certification exam. What is the MOST effective next step?",
@@ -67,20 +68,27 @@ _MOCK_RESPONSES = {
     "coach": json.dumps(
         {
             "verdict": "correct",
+            "bloom_level": "application",
             "feedback": "MOCK MODE — placeholder coaching. Your answer is correct, and "
             "your explanation shows you weighed the time constraint. One habit to keep: "
             "you named the rule (no penalty for guessing) before choosing — that is "
             "exactly the reasoning the exam rewards.",
             "trap": None,
-            "next_step": "Try a scenario-set item next to practice the six-option format.",
+            "next_step": "MOCK MODE — example Socratic follow-up. Now think about a "
+            "client whose pacing struggles come from test anxiety rather than a skill "
+            "gap — what is the underlying cause you'd need to identify before choosing "
+            "a strategy for them?",
             "textbook_pointer": "See the test-taking strategy tables in Chapter 1 of "
             "your TherapyEd book.",
         }
     ),
     "explain": "MOCK MODE — the LLM server is not connected, so this is a placeholder "
-    "explanation. When the model is running, I would first ask you one or two guiding "
-    "questions, then give a plain-language explanation with a short clinical example, "
-    "and point you to the right chapter of your TherapyEd book.",
+    "explanation. When the model is running, I would first ask you one guiding question "
+    "aimed at where your understanding seems to be on the Bloom's ladder, then give a "
+    "plain-language explanation with a short clinical example, then close with one "
+    "Socratic follow-up question one level up (for example, asking you to apply the "
+    "idea to a new client) before pointing you to the right chapter of your TherapyEd "
+    "book.",
     "progress": "MOCK MODE — placeholder summary. With the model connected, this would "
     "be a short plain-language note about what is getting stronger and what to practice "
     "next, based on your logged attempts.",

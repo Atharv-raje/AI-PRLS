@@ -40,6 +40,9 @@ async def make_question(study_id: str, chapter: int | None, topic: str) -> dict:
     return q
 
 
+_BLOOM_LEVELS = {"knowledge", "comprehension", "application", "analysis", "synthesis", "evaluation"}
+
+
 def _validate_question(q: dict) -> None:
     fmt = q.get("format")
     n_opts = len(q.get("options", []))
@@ -52,6 +55,8 @@ def _validate_question(q: dict) -> None:
                          f"options={n_opts}, correct={n_correct}")
     if len(q.get("rationales", [])) != n_opts:
         q["rationales"] = ["(no rationale provided)"] * n_opts
+    if q.get("bloom_level") not in _BLOOM_LEVELS:
+        q["bloom_level"] = "application"
 
 
 async def coach(question: dict, selected: list[int], explanation: str) -> dict:
@@ -73,10 +78,13 @@ async def coach(question: dict, selected: list[int], explanation: str) -> dict:
     try:
         result = llm.extract_json(raw)
         result["verdict"] = verdict_hint  # system scoring is authoritative
+        if result.get("bloom_level") not in _BLOOM_LEVELS:
+            result["bloom_level"] = None
         return result
     except (ValueError, json.JSONDecodeError):
         return {
             "verdict": verdict_hint,
+            "bloom_level": None,
             "feedback": raw,
             "trap": None,
             "next_step": "Try another question when you're ready.",

@@ -29,7 +29,8 @@ async def handle_chat(study_id: str, message: str) -> dict:
             mid = db.log_message(study_id, "assistant", text, route)
             return {"type": "text", "text": text, "message_id": mid, "route": route}
         _pending[study_id] = q
-        student_view = {k: q[k] for k in ("format", "stem", "options", "chapter", "domain", "topic")}
+        student_view = {k: q[k] for k in
+                        ("format", "stem", "options", "chapter", "domain", "topic", "bloom_level")}
         mid = db.log_message(study_id, "assistant", json.dumps(student_view), route)
         instruction = (
             "Choose the ONE best answer, then briefly tell me why you chose it."
@@ -70,7 +71,7 @@ async def handle_answer(study_id: str, selected: list[int], explanation: str) ->
         json.dumps({"selected": selected, "explanation": explanation}),
     )
     result = await agents.coach(q, selected, explanation)
-    db.log_attempt(study_id, q, selected, explanation, result["verdict"])
+    db.log_attempt(study_id, q, selected, explanation, result["verdict"], result.get("bloom_level"))
     _pending.pop(study_id, None)
 
     result["correct_options"] = q["correct"]

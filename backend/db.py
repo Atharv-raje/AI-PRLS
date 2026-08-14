@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS attempts (
   fmt TEXT,
   selected TEXT NOT NULL,        -- JSON list of chosen indices
   explanation TEXT,              -- the student's stated reasoning
-  verdict TEXT                   -- correct / partly / incorrect
+  verdict TEXT,                  -- correct / partly / incorrect
+  bloom_level TEXT               -- Bloom's level the explanation demonstrated
 );
 CREATE TABLE IF NOT EXISTS feedback (
   message_id TEXT PRIMARY KEY,
@@ -65,6 +66,10 @@ def _conn():
 def init() -> None:
     with _conn() as con:
         con.executescript(_SCHEMA)
+        try:
+            con.execute("ALTER TABLE attempts ADD COLUMN bloom_level TEXT")
+        except sqlite3.OperationalError:
+            pass  # column already exists
 
 
 def register_student(study_id: str) -> None:
@@ -92,11 +97,13 @@ def log_attempt(
     selected: list[int],
     explanation: str,
     verdict: str,
+    bloom_level: str | None = None,
 ) -> None:
     with _conn() as con:
         con.execute(
             "INSERT INTO attempts (id, study_id, ts, question_json, chapter, domain, "
-            "fmt, selected, explanation, verdict) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "fmt, selected, explanation, verdict, bloom_level) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 uuid.uuid4().hex,
                 study_id,
@@ -108,6 +115,7 @@ def log_attempt(
                 json.dumps(selected),
                 explanation,
                 verdict,
+                bloom_level,
             ),
         )
 
@@ -141,7 +149,7 @@ def stats(study_id: str) -> dict:
     """Aggregate stats used by the Progress agent and the dashboard."""
     with _conn() as con:
         rows = con.execute(
-            "SELECT chapter, domain, fmt, verdict, ts FROM attempts WHERE study_id=?",
+            "SELECT chapter, domain, fmt, verdict, bloom_level, ts FROM attempts WHERE study_id=?",
             (study_id,),
         ).fetchall()
 
@@ -169,6 +177,7 @@ def stats(study_id: str) -> dict:
         ),
         "by_chapter": bucket("chapter"),
         "by_domain": bucket("domain"),
+        "by_bloom_level": bucket("bloom_level"),
     }
 
 

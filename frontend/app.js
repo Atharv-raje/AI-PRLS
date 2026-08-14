@@ -133,6 +133,9 @@ function renderResponse(data) {
 /* ---------- question card ---------- */
 const DOMAINS = {1: "Evaluation & assessment", 2: "Analysis & planning",
                  3: "Interventions", 4: "Competency & practice management"};
+const BLOOM_LABELS = {knowledge: "Knowledge", comprehension: "Comprehension",
+                       application: "Application", analysis: "Analysis",
+                       synthesis: "Synthesis", evaluation: "Evaluation"};
 
 function renderQuestion(data) {
   const q = data.question;
@@ -145,6 +148,7 @@ function renderQuestion(data) {
   const meta = [];
   if (q.chapter) meta.push("Chapter " + q.chapter);
   if (q.domain) meta.push("Domain " + q.domain + " \u00b7 " + (DOMAINS[q.domain] || ""));
+  if (q.bloom_level) meta.push(BLOOM_LABELS[q.bloom_level] || q.bloom_level);
   meta.push(multi ? "Scenario \u2014 pick 3 of 6" : "Single answer");
   card.innerHTML = `<div class="qmeta">${meta.join("  \u00b7  ")}</div>
                     <div class="qstem"></div>
@@ -231,6 +235,13 @@ function renderCoaching(data) {
   fb.textContent = data.feedback;
   b.appendChild(fb);
 
+  if (data.bloom_level) {
+    const lvl = document.createElement("div");
+    lvl.className = "bloom-tag";
+    lvl.textContent = "Reasoning shown: " + (BLOOM_LABELS[data.bloom_level] || data.bloom_level);
+    b.appendChild(lvl);
+  }
+
   if (data.trap) {
     const t = document.createElement("div");
     t.className = "trap";
@@ -247,11 +258,21 @@ function renderCoaching(data) {
     });
     b.appendChild(ul);
   }
-  const next = document.createElement("div");
-  next.className = "pointer";
-  next.textContent =
-    (data.next_step ? data.next_step + "  " : "") + (data.textbook_pointer || "");
-  b.appendChild(next);
+  if (data.next_step) {
+    const socratic = document.createElement("div");
+    socratic.className = "socratic";
+    socratic.innerHTML = `<div class="socratic-label">Think about this next</div>`;
+    const q = document.createElement("div");
+    q.textContent = data.next_step;
+    socratic.appendChild(q);
+    b.appendChild(socratic);
+  }
+  if (data.textbook_pointer) {
+    const next = document.createElement("div");
+    next.className = "pointer";
+    next.textContent = data.textbook_pointer;
+    b.appendChild(next);
+  }
 
   b.parentElement.appendChild(feedbackBar(data.message_id));
   scrollDown();
@@ -288,6 +309,25 @@ function renderProgress(data) {
       bars.appendChild(row);
     });
     b.appendChild(bars);
+
+    if (s.by_bloom_level && Object.keys(s.by_bloom_level).length) {
+      const bloomHeading = document.createElement("div");
+      bloomHeading.className = "pstats-heading";
+      bloomHeading.textContent = "By reasoning level";
+      b.appendChild(bloomHeading);
+
+      const bloomBars = document.createElement("div");
+      Object.entries(s.by_bloom_level).forEach(([lvl, v]) => {
+        const pct = v.attempts ? Math.round((v.correct / v.attempts) * 100) : 0;
+        const row = document.createElement("div");
+        row.className = "pbar-row";
+        row.innerHTML = `<span class="lbl">${BLOOM_LABELS[lvl] || lvl}</span>
+                         <div class="pbar"><div style="width:${pct}%"></div></div>
+                         <span class="pct">${pct}% \u00b7 n=${v.attempts}</span>`;
+        bloomBars.appendChild(row);
+      });
+      b.appendChild(bloomBars);
+    }
   }
   b.parentElement.appendChild(feedbackBar(data.message_id));
   scrollDown();

@@ -7,6 +7,7 @@ clinical reasoning, explains concepts Socratically, and narrates progress —
 while always pointing students back to their own TherapyEd textbook instead of
 reproducing it.
 
+
 - **No fine-tuning.** All pedagogy lives in prompts (`backend/agents/prompts.py`)
   and retrieval over the team's own companion documents (`companion_docs/`).
 - **Runs fully local** on 3x 40GB GPUs (e.g. RTX 6000 Ada class) with vLLM

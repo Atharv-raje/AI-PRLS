@@ -82,11 +82,18 @@ def _mock_coach(messages: list[dict]) -> str:
 
 
 def _mock_explain(messages: list[dict]) -> str:
-    """Match a canned explanation to the student's topic, when possible."""
+    """Match a canned explanation to the student's topic; ask them to name one
+    if nothing matches, instead of guessing an unrelated topic.
+
+    Only the student's own words are matched — not the RAG companion-doc
+    context bundled into the same message — so retrieved doc text can't
+    accidentally trigger an unrelated example."""
     last = messages[-1]["content"] if messages else ""
-    match = _keyword_match(last, _EXAMPLES["explanations"])
-    chosen = match or _next_example("explain", _EXAMPLES["explanations"])
-    return chosen["text"]
+    student_said = last.rsplit("The student asks:", 1)[-1]
+    match = _keyword_match(student_said, _EXAMPLES["explanations"])
+    if match:
+        return match["text"]
+    return _EXAMPLES["explain_fallback"]
 
 
 async def chat(role: str, system: str, messages: list[dict]) -> str:

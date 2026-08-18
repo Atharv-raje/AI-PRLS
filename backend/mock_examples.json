@@ -215,6 +215,8 @@
     }
   ],
 
+  "explain_fallback": "Happy to walk through something with you — which concept would you like explained? For example, you could name a topic like splinting, sensory processing, therapeutic use of self, activity analysis, SOAP note documentation, or discharge planning, and I'll dig into it with you.",
+
   "progress_notes": [
     "You're building a solid practice history across a mix of domains, and your recent attempts show steady follow-through on the reasoning prompts, not just picking an answer. Keep pushing on the domains where accuracy is lower — that's where a little focused review pays off fastest. Rereading the chapter sections tied to your most recent misses is a good next step before your next practice set.",
     "Your practice pattern shows you're willing to attempt the harder scenario-format items, not just the single-answer ones, which mirrors the real exam well. Where you're strongest, a quick review is enough. Where accuracy dips, slow down and re-explain your reasoning out loud before you check the answer key.",

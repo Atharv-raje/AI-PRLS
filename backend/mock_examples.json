@@ -1,0 +1,230 @@
+{
+  "questions": [
+    {
+      "format": "single",
+      "domain": 3,
+      "chapter": 1,
+      "topic": "exam pacing",
+      "bloom_level": "application",
+      "stem": "An OT student has 90 items left and 60 minutes remaining on a computer-based certification exam. What is the MOST effective next step?",
+      "options": [
+        "Answer every remaining item with detailed re-reading of each stem",
+        "Mark a consistent answer choice for all remaining items, then revisit as time allows",
+        "Leave the remaining items blank to avoid penalty",
+        "Restart the exam tutorial to reduce anxiety"
+      ],
+      "correct": [1],
+      "rationales": [
+        "Too slow given the time remaining.",
+        "Correct — guessing carries no penalty and preserves review time.",
+        "Blank answers score zero; unanswered items waste the guessing odds.",
+        "The tutorial cannot be reopened and would consume exam time."
+      ],
+      "textbook_pointer": "Review the time-management strategies in Chapter 1 of your TherapyEd book."
+    },
+    {
+      "format": "single",
+      "domain": 3,
+      "chapter": 3,
+      "topic": "wrist splint fit",
+      "bloom_level": "analysis",
+      "stem": "A client recovering from a distal radius fracture is fitted with a wrist cock-up splint. The client reports the splint feels tight across the palm and limits finger movement. What is the MOST likely underlying cause?",
+      "options": [
+        "The splint's trim line extends too far distally, crossing the distal palmar crease",
+        "The client is wearing the splint for too many hours per day",
+        "The strap closest to the wrist is fastened too loosely",
+        "The client has not been given a home exercise program"
+      ],
+      "correct": [0],
+      "rationales": [
+        "Correct — trim lines that cross the distal palmar crease block MCP flexion and pinch the palm.",
+        "Wear schedule affects skin tolerance, not finger range of motion.",
+        "A loose proximal strap would cause the splint to slide, not restrict fingers.",
+        "Exercise programs address strength and motion over time, not an immediate fit problem."
+      ],
+      "textbook_pointer": "Review splint trim-line landmarks in the orthotics section of Chapter 3."
+    },
+    {
+      "format": "single",
+      "domain": 1,
+      "chapter": 5,
+      "topic": "standardized assessment",
+      "bloom_level": "comprehension",
+      "stem": "Why do occupational therapists use standardized assessments rather than relying only on informal observation when evaluating a new client?",
+      "options": [
+        "Standardized assessments take less time to administer than observation",
+        "They provide normed scores that can be compared across administrations and evaluators",
+        "They remove the need for clinical reasoning during evaluation",
+        "They are required before every single treatment session"
+      ],
+      "correct": [1],
+      "rationales": [
+        "Standardized tools often take longer, not less time, than brief observation.",
+        "Correct — norms and standard procedures make scores comparable over time and between clinicians.",
+        "Standardized tools support, but never replace, clinical reasoning.",
+        "Standardized assessments are used at key points, not before every session."
+      ],
+      "textbook_pointer": "Review the purpose of standardized vs. non-standardized assessment in Chapter 5."
+    },
+    {
+      "format": "scenario",
+      "domain": 2,
+      "chapter": 2,
+      "topic": "discharge planning",
+      "bloom_level": "synthesis",
+      "stem": "A client with a recent hip replacement is preparing for discharge home alone. Which THREE actions BEST support a safe transition?",
+      "options": [
+        "Recommend a raised toilet seat and shower chair for the bathroom",
+        "Instruct the client to resume driving immediately after discharge",
+        "Coordinate a home safety evaluation before the discharge date",
+        "Tell the client to avoid all household tasks indefinitely",
+        "Provide adaptive equipment training for dressing and bathing",
+        "Discontinue therapy once the client can walk with a walker"
+      ],
+      "correct": [0, 2, 4],
+      "rationales": [
+        "Correct — bathroom equipment reduces fall risk under hip precautions.",
+        "Driving clearance typically requires physician sign-off, not immediate resumption.",
+        "Correct — a home evaluation identifies hazards before the client returns.",
+        "Avoiding all tasks indefinitely undermines independence and is not standard guidance.",
+        "Correct — adaptive equipment training supports safe ADL performance within precautions.",
+        "Walking with a walker doesn't confirm ADL safety; discharge should reflect broader function."
+      ],
+      "textbook_pointer": "Review discharge planning and home safety recommendations in Chapter 2."
+    },
+    {
+      "format": "single",
+      "domain": 4,
+      "chapter": 4,
+      "topic": "SOAP note structure",
+      "bloom_level": "knowledge",
+      "stem": "In a SOAP note, which section documents the client's own reported symptoms and concerns?",
+      "options": ["Subjective", "Objective", "Assessment", "Plan"],
+      "correct": [0],
+      "rationales": [
+        "Correct — Subjective captures the client's own statements and concerns.",
+        "Objective records measurable, observed data such as range of motion or test scores.",
+        "Assessment is the therapist's clinical interpretation of the data.",
+        "Plan outlines the next steps and goals going forward."
+      ],
+      "textbook_pointer": "Review SOAP note structure and terminology in Chapter 4."
+    },
+    {
+      "format": "scenario",
+      "domain": 3,
+      "chapter": 6,
+      "topic": "hemiparesis dressing retraining",
+      "bloom_level": "evaluation",
+      "stem": "A client with left-sided hemiparesis after a stroke is working on independent dressing. Compared with the alternatives below, which THREE approaches are the BEST fit for this stage of intervention?",
+      "options": [
+        "Practice a consistent dressing sequence that starts with the affected arm",
+        "Have a caregiver fully dress the client to conserve the client's energy",
+        "Use adaptive equipment such as a button hook only if standard technique is insufficient",
+        "Grade the task by starting with looser, larger-opening clothing",
+        "Delay dressing practice until strength has fully returned",
+        "Instruct the client to dress the unaffected side first every time"
+      ],
+      "correct": [0, 2, 3],
+      "rationales": [
+        "Correct — dressing the affected limb first prevents it from being trapped in the garment.",
+        "Full caregiver dressing removes the practice opportunity the client needs to regain independence.",
+        "Correct — adaptive equipment is added only when needed, preserving the least restrictive approach.",
+        "Correct — grading task difficulty supports skill-building without overwhelming the client.",
+        "Waiting for full strength return delays functional practice and independence unnecessarily.",
+        "Dressing the unaffected side first can trap the affected limb and is not the recommended sequence."
+      ],
+      "textbook_pointer": "Review hemiparesis dressing retraining techniques in Chapter 6."
+    }
+  ],
+
+  "coach_feedback": [
+    {
+      "keywords": ["exam pacing", "pacing", "guessing"],
+      "bloom_level": "application",
+      "feedback": "Your reasoning connects the time constraint to a concrete decision, which is exactly the kind of judgment this section rewards. Naming that guessing carries no penalty, and using that to protect review time, shows you understand the strategy — not just the rule.",
+      "trap": null,
+      "next_step": "Now think about a client whose pacing struggles come from test anxiety rather than a skill gap — what is the underlying cause you'd need to identify before choosing a coaching strategy for them?",
+      "textbook_pointer": "See the test-taking strategy tables in Chapter 1 of your TherapyEd book."
+    },
+    {
+      "keywords": ["splint", "cock-up", "trim line", "wrist"],
+      "bloom_level": "analysis",
+      "feedback": "You correctly linked the tight, restrictive feeling to the splint's fit rather than to wear time or exercise. That's the right level of reasoning — tracing a symptom back to a specific design feature instead of a general habit.",
+      "trap": "overreading the stem and adding facts that are not there",
+      "next_step": "How would you adjust the splint pattern itself so it still supports the wrist without crossing the palmar crease?",
+      "textbook_pointer": "Review splint trim-line landmarks in the orthotics section of Chapter 3."
+    },
+    {
+      "keywords": ["standardized", "assessment", "norm"],
+      "bloom_level": "comprehension",
+      "feedback": "You explained why standardized tools matter in your own words, which shows real comprehension rather than just recalling the term \"standardized.\"",
+      "trap": null,
+      "next_step": "How would you apply that reasoning to choose between two standardized assessments for a specific client — what would make one a better fit than the other?",
+      "textbook_pointer": "Review assessment selection criteria in Chapter 5."
+    },
+    {
+      "keywords": ["discharge", "hip", "home safety"],
+      "bloom_level": "synthesis",
+      "feedback": "You combined equipment, environment, and skills training into one plan instead of treating them separately — that's the synthesis this kind of question is testing.",
+      "trap": "missing a safety-first option",
+      "next_step": "How would you change this plan if the client lived alone with no caregiver support at all — what would you prioritize differently?",
+      "textbook_pointer": "Review discharge planning guidance in Chapter 2."
+    },
+    {
+      "keywords": ["soap", "subjective", "documentation"],
+      "bloom_level": "knowledge",
+      "feedback": "You recalled the definition correctly. The next step is connecting that definition to a real note, not just naming it.",
+      "trap": null,
+      "next_step": "Given a client who says their pain is a 6/10 but you also measure their grip strength at 20 lbs, which detail goes in Subjective and which goes in Objective — and why does that distinction matter for your Assessment?",
+      "textbook_pointer": "Review SOAP note structure in Chapter 4."
+    },
+    {
+      "keywords": ["hemiparesis", "dressing", "stroke"],
+      "bloom_level": "evaluation",
+      "feedback": "You picked the approaches that build independence over time rather than the ones that remove the challenge entirely — that's a strong judgment call, not just a correct guess.",
+      "trap": "choosing an assessment when the stage calls for intervention (or vice versa)",
+      "next_step": "If this client plateaus at this level of dressing independence after several sessions, how would you decide whether to keep grading the same task or introduce adaptive equipment sooner than usual?",
+      "textbook_pointer": "Review hemiparesis retraining techniques in Chapter 6."
+    }
+  ],
+
+  "explanations": [
+    {
+      "keywords": ["splint", "splinting"],
+      "text": "Before I explain, tell me this: when you picture a wrist splint, are you thinking about what it holds still, or about what it's letting move?\n\nA splint's job is defined as much by what it blocks as by what it allows. A resting hand splint, for example, positions the wrist and fingers to prevent contracture, while a dynamic splint uses tension to actively assist a weak movement, like extending a finger after a tendon repair. The choice between them depends on the goal: protecting a healing structure calls for a static design, while regaining active movement calls for a dynamic one.\n\nThink of it like a cast versus a resistance band — a cast (static splint) holds a position, a resistance band (dynamic splint) actively works a motion. Mixing the two up is a common early mistake: prescribing a static splint when the client actually needs graded, active resistance.\n\nNow you try: a client six weeks post flexor tendon repair is ready to start light active motion. Would a static or dynamic splint fit that stage of healing, and why?\n\nFor the full classification system and trim-line diagrams, read the orthotics section of Chapter 3 in your TherapyEd book."
+    },
+    {
+      "keywords": ["sensory", "sensory processing", "sensory integration"],
+      "text": "First — when you say sensory processing is confusing, is it the different sensory systems that are unclear, or how a child's reaction connects to a specific system?\n\nSensory processing describes how the nervous system receives and organizes information from the senses, then produces a response. A child who covers their ears at a normal-volume classroom might be over-responsive to auditory input — the sensation registers as more intense than it actually is. A child who doesn't notice a shirt tag or a scraped knee might be under-responsive, needing more input before a sensation registers at all.\n\nA useful comparison: over-responsivity is like a smoke detector that's too sensitive, going off from steam. Under-responsivity is a smoke detector with a weak battery, not going off even when there's real smoke — same system, opposite sensitivity.\n\nNow apply it: if a child seeks out spinning and jumping constantly throughout the day, which pattern does that most likely reflect, and what would you want to observe next to confirm it?\n\nFor the full breakdown of sensory systems and response patterns, review the sensory integration section of Chapter 7 in your TherapyEd book."
+    },
+    {
+      "keywords": ["therapeutic use of self", "rapport", "interpersonal"],
+      "text": "Quick check first: is it the concept of \"therapeutic use of self\" that feels vague, or knowing when to use it differently with different clients?\n\nTherapeutic use of self means intentionally using your own personality, communication style, and interpersonal approach as part of the intervention — not just as bedside manner. With an anxious client, that might mean a calm, predictable pace and clear explanations before each step. With a discouraged client, it might mean naming small wins explicitly instead of assuming they'll notice their own progress.\n\nThink of it like adjusting your teaching style for different students: the content doesn't change, but how you deliver it does, based on what that person needs to actually receive it.\n\nNow think it through: a client keeps deflecting with humor whenever a session gets emotionally difficult. How would you adjust your therapeutic use of self to keep the session productive without shutting down their coping style?\n\nFor structured models of therapeutic use of self, read the professional communication section of Chapter 8 in your TherapyEd book."
+    },
+    {
+      "keywords": ["activity analysis"],
+      "text": "Before I explain — when you break down an activity, are you getting stuck on which components to look for, or on how to connect them back to a client's specific deficit?\n\nActivity analysis means breaking a task into its physical, cognitive, and social-emotional demands, then comparing those demands to a client's abilities. Making a cup of coffee, for example, demands standing balance, bilateral coordination, sequencing, and safety awareness around heat — all at once. Naming each demand separately is what lets you decide which part of the task to grade up or down.\n\nA helpful comparison: it's similar to reading a recipe's ingredient list before cooking — you can't adjust the dish well if you don't know what's actually in it.\n\nNow apply it: for a client with impaired sequencing after a brain injury, which single demand of the coffee-making task would you grade down first, and what would that adaptation look like?\n\nFor a full activity analysis worksheet and examples, review Chapter 2 of your TherapyEd book."
+    },
+    {
+      "keywords": ["soap", "documentation", "note"],
+      "text": "First — is SOAP note structure itself unclear, or is it deciding which details go in which section?\n\nSOAP stands for Subjective, Objective, Assessment, and Plan. Subjective is what the client reports in their own words. Objective is what you measure or directly observe — range of motion, test scores, time on task. Assessment is your clinical interpretation of what the subjective and objective data mean together. Plan is what happens next.\n\nA simple way to keep them straight: Subjective is what they say, Objective is what you see or measure, Assessment is what you think it means, Plan is what you'll do about it.\n\nNow try it: a client says their hand \"feels weak today,\" and you measure their grip strength at 5 lbs below baseline. Which detail is Subjective, which is Objective, and how would that combination shape your Assessment?\n\nFor full SOAP note examples, review the documentation section of Chapter 4 in your TherapyEd book."
+    },
+    {
+      "keywords": ["discharge", "family-centered", "caregiver"],
+      "text": "Quick question first: is discharge planning unclear as a concept, or is it deciding what to prioritize when time is limited?\n\nDischarge planning means preparing a client — and often their caregivers — for the transition out of your care, so gains made in therapy actually carry over into daily life. That includes home safety changes, caregiver training, and making sure the client or family knows the warning signs that would mean they need to seek help again.\n\nThink of it like packing for a trip: you're not just packing what's useful in the session room, you're packing for the environment the client is actually going home to.\n\nNow apply it: if a client's caregiver is present for only one visit before discharge, what would you prioritize teaching them in that single session?\n\nFor discharge planning checklists, review Chapter 2 of your TherapyEd book."
+    }
+  ],
+
+  "progress_notes": [
+    "You're building a solid practice history across a mix of domains, and your recent attempts show steady follow-through on the reasoning prompts, not just picking an answer. Keep pushing on the domains where accuracy is lower — that's where a little focused review pays off fastest. Rereading the chapter sections tied to your most recent misses is a good next step before your next practice set.",
+    "Your practice pattern shows you're willing to attempt the harder scenario-format items, not just the single-answer ones, which mirrors the real exam well. Where you're strongest, a quick review is enough. Where accuracy dips, slow down and re-explain your reasoning out loud before you check the answer key.",
+    "You're still early in building a full picture of your strengths, but the pattern so far suggests your reasoning is more consistent than your first-attempt accuracy — a sign that talking through the \"why\" is helping. Keep practicing at this pace, and revisit the textbook sections tied to any domain where you've seen more than one miss."
+  ],
+
+  "chat_replies": [
+    "Hi! I'm your AI-PRLS study partner. You can ask me to quiz you on a chapter, explain a concept you're stuck on, or show your progress — just tell me what you'd like to do.",
+    "Good to see you. Want to jump into a practice question, work through something you're finding confusing, or check how your practice is trending so far?",
+    "You're welcome — that's what I'm here for. Ready for another practice question, or is there a concept you'd like to go over?",
+    "This tool is part of a research pilot to help OT students prepare for the NBCOT exam. I can quiz you, explain concepts, and track your practice — just ask."
+  ]
+}

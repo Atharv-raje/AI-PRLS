@@ -1,12 +1,16 @@
 """Thin client for the local vLLM server (OpenAI-compatible chat API).
 
-Includes a MOCK mode (AIPRLS_MOCK_LLM=1) that returns canned responses so the
-frontend and database can be tested on a laptop with no GPUs.
+Includes a MOCK mode (AIPRLS_MOCK_LLM=1) that serves a small library of
+worked examples (backend/mock_examples.json) so the frontend, database, and
+demo flow can be exercised on a laptop with no GPUs. These are original
+illustrative examples the team wrote for this purpose — not textbook text
+and not live model output.
 """
 from __future__ import annotations
 
 import json
 import re
+from pathlib import Path
 
 import httpx
 
@@ -35,67 +39,26 @@ def extract_json(text: str) -> dict:
 
 # ---------------------------------------------------------------------------
 
-_MOCK_RESPONSES = {
-    "router": '{"route": "explain", "chapter": null, "topic": "general"}',
-    "question": json.dumps(
-        {
-            "format": "single",
-            "domain": 3,
-            "chapter": 1,
-            "topic": "exam pacing",
-            "bloom_level": "application",
-            "stem": "MOCK MODE — the LLM server is not connected. This is a placeholder "
-            "question. An OT student has 90 items left and 60 minutes remaining on a "
-            "computer-based certification exam. What is the MOST effective next step?",
-            "options": [
-                "Answer every remaining item with detailed re-reading of each stem",
-                "Mark a consistent answer choice for all remaining items, then revisit "
-                "as time allows",
-                "Leave the remaining items blank to avoid penalty",
-                "Restart the exam tutorial to reduce anxiety",
-            ],
-            "correct": [1],
-            "rationales": [
-                "Too slow given the time remaining.",
-                "Correct — guessing carries no penalty and preserves review time.",
-                "Blank answers score zero; unanswered items waste the guessing odds.",
-                "The tutorial cannot be reopened and would consume exam time.",
-            ],
-            "textbook_pointer": "Review the time-management strategies in Chapter 1 "
-            "of your TherapyEd book.",
-        }
-    ),
-    "coach": json.dumps(
-        {
-            "verdict": "correct",
-            "bloom_level": "application",
-            "feedback": "MOCK MODE — placeholder coaching. Your answer is correct, and "
-            "your explanation shows you weighed the time constraint. One habit to keep: "
-            "you named the rule (no penalty for guessing) before choosing — that is "
-            "exactly the reasoning the exam rewards.",
-            "trap": None,
-            "next_step": "MOCK MODE — example Socratic follow-up. Now think about a "
-            "client whose pacing struggles come from test anxiety rather than a skill "
-            "gap — what is the underlying cause you'd need to identify before choosing "
-            "a strategy for them?",
-            "textbook_pointer": "See the test-taking strategy tables in Chapter 1 of "
-            "your TherapyEd book.",
-        }
-    ),
-    "explain": "MOCK MODE — the LLM server is not connected, so this is a placeholder "
-    "explanation. When the model is running, I would first ask you one guiding question "
-    "aimed at where your understanding seems to be on the Bloom's ladder, then give a "
-    "plain-language explanation with a short clinical example, then close with one "
-    "Socratic follow-up question one level up (for example, asking you to apply the "
-    "idea to a new client) before pointing you to the right chapter of your TherapyEd "
-    "book.",
-    "progress": "MOCK MODE — placeholder summary. With the model connected, this would "
-    "be a short plain-language note about what is getting stronger and what to practice "
-    "next, based on your logged attempts.",
-    "chat": "MOCK MODE — hello! The LLM server is not connected. Start it with "
-    "scripts/start_llm.sh, or keep exploring the interface: try the Practice and Ask "
-    "buttons on the left.",
-}
+_EXAMPLES: dict = json.loads((Path(__file__).parent / "mock_examples.json").read_text())
+
+# Round-robin position per role, so repeated demo requests cycle through the
+# library instead of always returning the same example.
+_rotation: dict[str, int] = {}
+
+
+def _next_example(role: str, pool: list):
+    idx = _rotation.get(role, 0)
+    _rotation[role] = (idx + 1) % len(pool)
+    return pool[idx]
+
+
+def _keyword_match(text: str, pool: list):
+    """Pick the pool entry whose keywords appear in `text`; None if no match."""
+    text = text.lower()
+    for entry in pool:
+        if any(k in text for k in entry.get("keywords", [])):
+            return entry
+    return None
 
 
 def _mock_route(messages: list[dict]) -> str:
@@ -110,12 +73,36 @@ def _mock_route(messages: list[dict]) -> str:
     return '{"route": "explain", "chapter": null, "topic": "general"}'
 
 
+def _mock_coach(messages: list[dict]) -> str:
+    """Match feedback to whichever question was just answered, when possible."""
+    last = messages[-1]["content"] if messages else ""
+    match = _keyword_match(last, _EXAMPLES["coach_feedback"])
+    chosen = match or _next_example("coach", _EXAMPLES["coach_feedback"])
+    return json.dumps({k: v for k, v in chosen.items() if k != "keywords"})
+
+
+def _mock_explain(messages: list[dict]) -> str:
+    """Match a canned explanation to the student's topic, when possible."""
+    last = messages[-1]["content"] if messages else ""
+    match = _keyword_match(last, _EXAMPLES["explanations"])
+    chosen = match or _next_example("explain", _EXAMPLES["explanations"])
+    return chosen["text"]
+
+
 async def chat(role: str, system: str, messages: list[dict]) -> str:
     """Send a chat completion request. `role` picks generation settings."""
     if config.MOCK_LLM:
         if role == "router":
             return _mock_route(messages)
-        return _MOCK_RESPONSES.get(role, _MOCK_RESPONSES["chat"])
+        if role == "question":
+            return json.dumps(_next_example("question", _EXAMPLES["questions"]))
+        if role == "coach":
+            return _mock_coach(messages)
+        if role == "explain":
+            return _mock_explain(messages)
+        if role == "progress":
+            return _next_example("progress", _EXAMPLES["progress_notes"])
+        return _next_example("chat", _EXAMPLES["chat_replies"])
 
     gen = config.GEN.get(role, config.GEN["chat"])
     payload = {
